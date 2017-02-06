@@ -14,7 +14,7 @@ public class HistoryDAOImpl implements HistoryDAO {
 
 	@Override
 	public void addHistory(History h) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "insert into history value(?,?,?,?,?,?)";
 		PreparedStatement ps;
 
@@ -36,12 +36,11 @@ public class HistoryDAOImpl implements HistoryDAO {
 
 	@Override
 	public List<History> getList(int id) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from history where user_id='"+ id +"'";
 		List<History> list = new ArrayList<History>();
 		try {
-			PreparedStatement ps = (PreparedStatement) con
-					.prepareStatement(sql);
+			PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int history_id = rs.getInt("history_id");

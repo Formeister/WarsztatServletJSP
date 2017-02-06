@@ -1,8 +1,6 @@
 package com.warsztat.servletjsp.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,37 +18,23 @@ import com.warsztat.servletjsp.model.Cart;
 import com.warsztat.servletjsp.model.User;
 import com.warsztat.servletjsp.dao.UserDAOImpl;
 
-/**
- * Servlet implementation class RegisterServlet
- */
+
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAOImpl userDAO = new UserDAOImpl();
 	private List<Cart> cart = new ArrayList<Cart>();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public RegisterServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 
@@ -106,8 +90,7 @@ public class RegisterServlet extends HttpServlet {
 				
 			} else {
 				url = "/register.jsp";
-				RequestDispatcher rd = getServletContext()
-						.getRequestDispatcher(url);
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 				rd.forward(request, response);
 			}
 			

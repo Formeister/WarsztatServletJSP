@@ -17,25 +17,18 @@ import com.warsztat.servletjsp.dao.HistoryDAOImpl;
 import com.warsztat.servletjsp.dao.ProductDAOImpl;
 import com.warsztat.servletjsp.dao.UserDAOImpl;
 
-/**
- * Servlet implementation class ConfirmServlet
- */
+
 public class ConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAOImpl userDAO = new UserDAOImpl();
     private ProductDAOImpl productDAO = new ProductDAOImpl();  
     private HistoryDAOImpl historyDAO = new HistoryDAOImpl();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public ConfirmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		User u = userDAO.getUser(username);
@@ -60,9 +53,6 @@ public class ConfirmServlet extends HttpServlet {
 		   response.sendRedirect("index.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

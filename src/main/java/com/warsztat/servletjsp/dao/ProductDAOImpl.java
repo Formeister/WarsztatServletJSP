@@ -13,7 +13,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public void addProduct(Product p) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "insert into product value(?,?,?,?,?,?)";
 		PreparedStatement ps;
 		try {
@@ -34,7 +34,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<Product> getList() {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from product";
 		List<Product> list = new ArrayList<Product>();
 		try {
@@ -61,7 +61,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<Product> getListByCategory(int id) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from product where category_id='" + id + "'";
 		List<Product> list = new ArrayList<Product>();
 		try {
@@ -88,7 +88,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product getProduct(int id) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from product where product_id='" + id + "'";
 		Product p = new Product();
 		try {
@@ -123,7 +123,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<Product> searchList(String nameProduct, String nameCategory) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql=null;
 		if(!nameProduct.equals("") && !nameCategory.equals("")){
 			sql = "SELECT * FROM product, category WHERE product.name LIKE N'%"+ nameProduct +"%' AND product.category_id = category.category_id AND category.name=N'"+nameCategory+"'";

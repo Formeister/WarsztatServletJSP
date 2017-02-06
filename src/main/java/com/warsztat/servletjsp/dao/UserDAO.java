@@ -15,5 +15,7 @@ public interface UserDAO {
 	public void deleteUser(int user_id);
 	
 	public User getUser(String username);
+	
+	public int countUsers();
 
 }

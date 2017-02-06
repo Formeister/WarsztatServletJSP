@@ -13,7 +13,7 @@ CREATE TABLE `category` (
   `name` varchar(255) collate utf8_unicode_ci default NULL,
   `desc` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`category_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- ----------------------------
 -- Records of category
@@ -42,7 +42,7 @@ CREATE TABLE `history` (
 -- ----------------------------
 -- Records of history
 -- ----------------------------
-INSERT INTO `history` VALUES ('1', '10', '2', '2016-02-17 12:25:21', '1', '500');
+INSERT INTO `history` VALUES ('1', '10', '2', '2016-02-17 12:25:21', '1', '200');
 
 -- ----------------------------
 -- Table structure for product

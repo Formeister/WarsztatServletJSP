@@ -13,41 +13,24 @@ import javax.servlet.http.HttpSession;
 import com.warsztat.servletjsp.model.Cart;
 import com.warsztat.servletjsp.model.Product;
 
-/**
- * Servlet implementation class CartServlet
- */
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Cart> cart = new ArrayList<Cart>();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public CartServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter("command");
 		String product_id = request.getParameter("product_id");
 		if (command.equals("addCart")) {
-			Product p = new Product(Integer.parseInt(product_id), 0, "", "",
-					0.0 , "", "");
+			Product p = new Product(Integer.parseInt(product_id), 0, "", "", 0.0 , "", "");
 			addToCart(p);
 			// add to cart after we will go to the shopping cart page
 			// create value for storing session
@@ -57,8 +40,7 @@ public class CartServlet extends HttpServlet {
 			response.sendRedirect("cart.jsp");
 		} else{
 			if(command.equals("deleteCart")){
-				Product p = new Product(Integer.parseInt(product_id), 0, "", "",
-						0.0 , "", "");
+				Product p = new Product(Integer.parseInt(product_id), 0, "", "", 0.0 , "", "");
 				deleteFromCart(p);
 				HttpSession session = request.getSession();
 
@@ -66,8 +48,7 @@ public class CartServlet extends HttpServlet {
 				response.sendRedirect("cart.jsp");
 			} else{
 				if(command.equals("removeCart")){
-					Product p = new Product(Integer.parseInt(product_id), 0, "", "",
-							0.0 , "", "");
+					Product p = new Product(Integer.parseInt(product_id), 0, "", "", 0.0 , "", "");
 					removeFromCart(p);
 					HttpSession session = request.getSession();
 
@@ -75,8 +56,7 @@ public class CartServlet extends HttpServlet {
 					response.sendRedirect("cart.jsp");
 				}else{
 					if(command.equals("setCart")){
-						Product p = new Product(Integer.parseInt(product_id), 0, "", "",
-								0.0 , "", "");
+						Product p = new Product(Integer.parseInt(product_id), 0, "", "", 0.0 , "", "");
 						setCart(p,Integer.parseInt((String) request.getParameter("number")));
 						HttpSession session = request.getSession();
 
@@ -112,7 +92,7 @@ public class CartServlet extends HttpServlet {
 		return "cart";
 	}
 
-	// phuongw thuc them san pham moi vao trong gio hang
+	// increase product in cart
 	public String addToCart(Product p) {
 		for (Cart item : cart) {
 			if (item.getP().getProduct_id() == p.getProduct_id()) {

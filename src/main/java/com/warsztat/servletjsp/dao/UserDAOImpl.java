@@ -1,19 +1,21 @@
 package com.warsztat.servletjsp.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.cj.jdbc.PreparedStatement;
-
 import com.warsztat.servletjsp.model.User;
 
 public class UserDAOImpl implements UserDAO {
+	
+
+	public UserDAOImpl(){
+	}
 
 	@Override
 	public void addUser(User u) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "insert into user value(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps;
 		try {
@@ -35,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean checkUser(String username) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from user where username='" + username + "'";
 		PreparedStatement ps;
 		try {
@@ -51,16 +53,16 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 
-/*	public static void main(String[] args) {
+	/*	public static void main(String[] args) {
 		UserDAOImpl dao = new UserDAOImpl();
 		// dao.addUser(new User(0, "admin", "12345", "admin", "1"));
-//		System.out.println(dao.checkUser("admin"));
+		// System.out.println(dao.checkUser("admin"));
 		System.out.println(dao.login("admin", "12345"));
 	}*/
 
 	@Override
 	public boolean login(String username, String password) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from user where username='" + username
 				+ "' and password='" + password + "'";
 		PreparedStatement ps;
@@ -79,7 +81,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void updateUser(User u) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "update user set user_id=?, password=?, sex=?, email=?, phone=?, address=?, role=? where username=?";
 		try {
 			PreparedStatement ps = (PreparedStatement) con
@@ -96,13 +98,12 @@ public class UserDAOImpl implements UserDAO {
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
 	@Override
 	public void deleteUser(int user_id) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "delete from user where user_id=?";
 		try {
 			PreparedStatement ps = (PreparedStatement) con
@@ -113,12 +114,11 @@ public class UserDAOImpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
 	public User getUser(String name) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from user where username='" + name + "'";
 		User u = new User();
 		try {
@@ -142,6 +142,24 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return u;
 	}
-
-
+	
+	@Override
+	public int countUsers(){
+		Connection con = DBConnect.getConnection();
+		String sql = "select * from user";
+		int count = 0;
+		try {
+			PreparedStatement ps = (PreparedStatement) con
+					.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				count++;
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	
+	}
 }

@@ -13,7 +13,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public void addCategory(Category c) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "insert into category value(?,?,?)";
 		PreparedStatement ps;
 		try {
@@ -30,7 +30,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public List<Category> getList() {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from category";
 		List<Category> list = new ArrayList<Category>();
 		try {
@@ -61,7 +61,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public void delCategory(int category_id) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "delete from category where category_id='" + category_id
 				+ "'";
 		try {
@@ -77,7 +77,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public Category getCategory(int id) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "select * from category where category_id='" + id + "'";
 		Category c = new Category();
 		try {
@@ -99,7 +99,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public void updateCategory(Category c) {
-		Connection con = DBConnect.getConnecttion();
+		Connection con = DBConnect.getConnection();
 		String sql = "update category set name=?, desc=? where category_id=?";
 		try {
 			PreparedStatement ps = (PreparedStatement) con

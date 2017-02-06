@@ -10,30 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.warsztat.servletjsp.dao.UserDAOImpl;
 
-/**
- * Servlet implementation class UpdateUser
- */
+
 public class DeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserDAOImpl userDAO = new UserDAOImpl();   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public DeleteUser() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
